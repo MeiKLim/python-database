@@ -16,6 +16,7 @@ def percentage(filename):
 		
 		print "There are in total {0} lone parent families with dependent children in Hammersmith and Fulham; of which {1} are male parents with dependent children and {2} are female parents with dependent children.".format(counter_all, counter_male, counter_female)
 
+
 percentage('Loneparents.csv')
 
 def part_time(filename):
@@ -68,8 +69,27 @@ def calculations(input_filename, output_filename):
 
 calculations('Loneparents.csv', 'those_working.csv')
 
-if __name__=='__main__':
-	p1 = Process(target = percentage)
-	p1.start()
-	p2 = Process(target = part_time)
-	p2.start()
+import multiprocessing
+
+print "number of Loneparents", multiprocessing.cpu_count()
+
+def calc(a, b):
+    c = a + b
+    return c
+
+if __name__ == "__main__":
+    p1 = multiprocessing.Process(target = calc, args = (3, 5) )
+    p1.start()
+
+    p2 = multiprocessing.Process(target = calc, args = (2, 2) )
+    p2.start()
+
+    p1.join()
+    p2.join()
+
+
+# if __name__=='__main__':
+# 	p1 = Process(target = percentage)
+# 	p1.start()
+# 	p2 = Process(target = part_time)
+# 	p2.start()

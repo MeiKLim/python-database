@@ -77,6 +77,12 @@ print "number of Loneparents", multiprocessing.cpu_count()
 def calc(a, b):
     c = a + b
     return c
+    
+def age(filename):
+	with open ('age.csv','r') as csvfile:
+		Hammersmith_Fulham = csvfile.readline(195)
+
+age('age.csv')
 
 if __name__ == "__main__":
     p1 = multiprocessing.Process(target = calc, args = (3, 5) )

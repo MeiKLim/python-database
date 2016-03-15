@@ -21,13 +21,14 @@ percentage('Loneparents.csv')
 def part_time(filename):
 	with open(filename) as csvfile:
 		reader = unicodecsv.DictReader(csvfile)
+		sorted_rows = (sorted(reader, key=itemgetter('PT'))
+		max_pt = sorted_rows[-1]
+		min_pt = sorted_rows[0]
 
-	sorted_rows = (sorted(reader, key=itemgetter('PT'))
-	max_pt = sorted_rows[-1]
-	min_pt = sorted_rows[0]
+		print max_pt
+		print min_pt
 
-	print max_pt
-	print min_pt
+part_time('Loneparents.csv')
 
 def calculations(input_filename, output_filename):
 	with open(input_filename) as csvfile:
@@ -65,9 +66,14 @@ def calculations(input_filename, output_filename):
 		writer.writeheader()
 		for output_row in output_rows:
 				writer.writerow(output_row)
-
+#it's suppose to pull out a single line from the csv file
 calculations('Loneparents.csv', 'those_working.csv')
+	with open ('age.csv','r') as csvfile:
+		Hammersmith_Fulham = csvfile.readline(195)
 
+age('age.csv')
+
+def age(filename):
 if __name__=='__main__':
 	p1 = Process(target = percentage)
 	p1.start()

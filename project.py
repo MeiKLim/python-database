@@ -1,5 +1,7 @@
 import unicodecsv
 from operator import itemgetter
+import csv
+from matplotlib import pyplot as plt
 
 def percentage(filename):
 	with open(filename) as csvfile:
@@ -79,16 +81,24 @@ def calc(a, b):
     return c
     
 def age(filename):
-	with open ('age.csv','r') as csvfile:
-		Hammersmith_Fulham = csvfile.readline(195)
+	with open ('Age.csv','r') as csvfile:
+		csv_f = csv.reader(csvfile)
+		for row_num, row in enumerate(csv_f):
+			if row_num == 194:
+				print row
+				title = row[0]
+				row = [float(x.replace(',', '')) for x in row[1:]]
+				plt.plot(row)
+				plt.title(title)
+				plt.show()
 
-age('age.csv')
+age('Age.csv')
 
 if __name__ == "__main__":
-    p1 = multiprocessing.Process(target = calc, args = (3, 5) )
+    p1 = multiprocessing.Process(target=calc, args=(3, 5) )
     p1.start()
 
-    p2 = multiprocessing.Process(target = calc, args = (2, 2) )
+    p2 = multiprocessing.Process(target=calc, args=(2, 2) )
     p2.start()
 
     p1.join()

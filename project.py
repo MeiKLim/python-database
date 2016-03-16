@@ -22,7 +22,7 @@ percentage('Loneparents.csv')
 def part_time(filename):
 	with open(filename) as csvfile:
 		reader = unicodecsv.DictReader(csvfile)
-		sorted_rows = (sorted(reader, key=itemgetter('PT'))
+		sorted_rows = (sorted(reader, key=itemgetter('PT')))
 		max_pt = sorted_rows[-1]
 		min_pt = sorted_rows[0]
 

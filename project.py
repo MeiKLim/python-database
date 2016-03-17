@@ -2,6 +2,7 @@ import unicodecsv
 from operator import itemgetter
 import csv
 from matplotlib import pyplot as plt
+import pandas as pd
 
 def percentage(filename):
 	with open(filename) as csvfile:
@@ -94,19 +95,14 @@ def age(filename):
 
 age('Age.csv')
 
-if __name__ == "__main__":
-    p1 = multiprocessing.Process(target=calc, args=(3, 5) )
-    p1.start()
+# if __name__ == "__main__":
+#     p1 = multiprocessing.Process(target=calc, args=(3, 5) )
+#     p1.start()
 
-    p2 = multiprocessing.Process(target=calc, args=(2, 2) )
-    p2.start()
+#     p2 = multiprocessing.Process(target=calc, args=(2, 2) )
+#     p2.start()
 
-    p1.join()
-    p2.join()
+#     p1.join()
+#     p2.join()
 
 
-# if __name__=='__main__':
-# 	p1 = Process(target = percentage)
-# 	p1.start()
-# 	p2 = Process(target = part_time)
-# 	p2.start()
